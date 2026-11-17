@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BHUMI METER – জমির সঠিক হিসাব</title>
+  <meta name="description" content="BHUMI METER – বাংলায় জমির হিসাব, ইউনিট কনভার্টার ও নির্মাণ সামগ্রীর আনুমানিক হিসাব। লগইন ছাড়াই বিনামূল্যে।">
+  <meta name="theme-color" content="#16834A">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌾</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <a class="skip-link" href="#calculator" data-i18n="skip_link">মূল কন্টেন্টে যান</a>
+
+  <!-- ================= HEADER / NAVIGATION ================= -->
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-wrap">
+      <a href="#home" class="logo" aria-label="BHUMI METER">
+        <span class="logo-mark" aria-hidden="true">🌾</span>
+        <span class="logo-text">BHUMI <b>METER</b></span>
+      </a>
+
+      <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+        <ul>
+          <li><a href="#home" data-target="home" data-i18n="nav_home"></a></li>
+          <li><a href="#calculator" data-target="calculator" data-i18n="nav_calc"></a></li>
+          <li><a href="#converter" data-target="converter" data-i18n="nav_conv"></a></li>
+          <li><a href="#construction" data-target="construction" data-i18n="nav_build"></a></li>
+          <li><a href="#learn" data-target="learn" data-i18n="nav_learn"></a></li>
+          <li><a href="#contact" data-target="contact" data-i18n="nav_contact"></a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button type="button" class="lang-btn" id="langBtn" data-action="toggle-lang" data-i18n-aria="aria_lang">
+          🌐 <span data-i18n="lang_btn"></span>
+        </button>
+        <button type="button" class="hamburger" id="menuBtn" aria-expanded="false" aria-controls="mainNav" data-i18n-aria="aria_menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================= HERO ================= -->
+    <section id="home" class="hero" data-nav="home">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <span class="hero-float f1" aria-hidden="true">📐</span>
+      <span class="hero-float f2" aria-hidden="true">🌾</span>
+      <span class="hero-float f3" aria-hidden="true">📏</span>
+
+      <div class="container hero-content">
+        <p class="hero-badge" data-i18n="hero_badge"></p>
+        <h1>BHUMI METER</h1>
+        <p class="hero-tagline" data-i18n="tagline"></p>
+        <p class="hero-desc" data-i18n="hero_desc"></p>
+        <div class="hero-buttons">
+          <a href="#calculator" class="btn btn-primary btn-lg" data-i18n="hero_btn1"></a>
+          <a href="#learn" class="btn btn-outline-light btn-lg" data-i18n="hero_btn2"></a>
+        </div>
+        <ul class="hero-chips">
+          <li data-i18n="hero_chip1"></li>
+          <li data-i18n="hero_chip2"></li>
+          <li data-i18n="hero_chip3"></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ================= MAIN LAND CALCULATOR ================= -->
+    <section id="calculator" class="section" data-nav="calculator">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow" data-i18n="calc_eyebrow"></span>
+          <h2 data-i18n="calc_title"></h2>
+          <p data-i18n="calc_sub"></p>
+        </div>
+
+        <div class="card calc-card reveal">
+          <form id="mainForm" novalidate>
+            <div class="form-grid">
+              <div class="field">
+                <label for="length" data-i18n="lbl_length"></label>
+                <div class="input-wrap">
+                  <input id="length" class="num-input" type="number" step="any" min="0" inputmode="decimal" autocomplete="off" data-i18n-ph="ph_length">
+                  <span class="suffix" data-i18n="suffix_ft"></span>
+                </div>
+                <p class="field-error" role="alert"></p>
+              </div>
+              <div class="field">
+                <label for="width" data-i18n="lbl_width"></label>
+                <div class="input-wrap">
+                  <input id="width" class="num-input" type="number" step="any" min="0" inputmode="decimal" autocomplete="off" data-i18n-ph="ph_width">
+                  <span class="suffix" data-i18n="suffix_ft"></span>
+                </div>
+                <p class="field-error" role="alert"></p>
+              </div>
+            </div>
+            <div class="btn-row">
+              <button type="submit" class="btn btn-primary btn-lg" data-i18n="btn_calc"></button>
+              <button type="button" class="btn btn-ghost btn-lg" data-action="reset-main" data-i18n="btn_reset"></button>
+            </div>
+          </form>
+
+          <div id="mainResult" class="result-area" hidden>
+            <h3 data-i18n="res_title"></h3>
+            <p id="mainSummary" class="summary"></p>
+            <div id="mainCards" class="result-grid"></div>
+            <div class="btn-row no-print">
+              <button type="button" class="btn btn-soft" data-action="copy-main" data-i18n="btn_copy"></button>
+              <button type="button" class="btn btn-soft" data-action="print-main" data-i18n="btn_print"></button>
+              <button type="button" class="btn btn-soft" data-action="download-main" data-i18n="btn_download"></button>
+              <button type="button" class="btn btn-primary" data-action="save-main" data-i18n="btn_save"></button>
+            </div>
+            <p class="note"><strong data-i18n="note_title"></strong> <span data-i18n="note_text"></span></p>
+          </div>
+        </div>
+
+        <!-- HISTORY -->
+        <div class="card history-card reveal" id="history">
+          <div class="history-head">
+            <div>
+              <h3 data-i18n="hist_title"></h3>
+              <p class="muted" data-i18n="hist_sub"></p>
+            </div>
+            <button type="button" class="btn btn-danger btn-sm" data-action="clear-history" data-i18n="btn_clear_history"></button>
+          </div>
+          <div id="historyList" class="history-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ADVANCED CONVERTER ================= -->
+    <section id="converter" class="section section-alt" data-nav="converter">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow" data-i18n="conv_eyebrow"></span>
+          <h2 data-i18n="conv_title"></h2>
+          <p data-i18n="conv_sub"></p>
+          <div class="quick-links">
+            <a href="#multi" class="chip" data-i18n="quick_multi"></a>
+            <a href="#settings" class="chip" data-i18n="quick_settings"></a>
+          </div>
+        </div>
+        <div id="converterGrid" class="converter-grid reveal"></div>
+      </div>
+    </section>
+
+    <!-- ================= MULTIPLE PLOTS ================= -->
+    <section id="multi" class="section" data-nav="converter">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow" data-i18n="multi_eyebrow"></span>
+          <h2 data-i18n="multi_title"></h2>
+          <p data-i18n="multi_sub"></p>
+        </div>
+
+        <div class="card reveal">
+          <div id="plotList" class="plot-list"></div>
+          <div class="btn-row">
+            <button type="button" class="btn btn-soft" data-action="add-plot" data-i18n="btn_add_plot"></button>
+            <button type="button" class="btn btn-primary" data-action="calc-multi" data-i18n="btn_calc_total"></button>
+            <button type="button" class="btn btn-ghost" data-action="reset-multi" data-i18n="btn_reset_all"></button>
+          </div>
+
+          <div id="multiResult" class="result-area" hidden>
+            <h3 data-i18n="multi_total_title"></h3>
+            <div class="table-wrap"><table id="multiTable" class="data-table"></table></div>
+            <div id="multiCards" class="result-grid"></div>
+            <div class="btn-row no-print">
+              <button type="button" class="btn btn-soft" data-action="copy-multi" data-i18n="btn_copy"></button>
+              <button type="button" class="btn btn-soft" data-action="print-multi" data-i18n="btn_print"></button>
+              <button type="button" class="btn btn-soft" data-action="download-multi" data-i18n="btn_download"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CUSTOM SETTINGS ================= -->
+    <section id="settings" class="section section-alt" data-nav="converter">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow" data-i18n="set_eyebrow"></span>
+          <h2 data-i18n="set_title"></h2>
+          <p data-i18n="set_sub"></p>
+        </div>
+
+        <div class="card reveal">
+          <form id="settingsForm" novalidate>
+            <div class="form-grid three">
+              <div class="field">
+                <label for="setKatha" data-i18n="set_katha"></label>
+                <input id="setKatha" class="num-input" type="number" step="any" min="0" inputmode="decimal">
+                <p class="field-error" role="alert"></p>
+              </div>
+              <div class="field">
+                <label for="setKB" data-i18n="set_kb"></label>
+                <input id="setKB" class="num-input" type="number" step="any" min="0" inputmode="decimal" data-max="1000">
+                <p class="field-error" role="alert"></p>
+              </div>
+              <div class="field">
+                <label for="setDecimal" data-i18n="set_decimal"></label>
+                <input id="setDecimal" class="num-input" type="number" step="any" min="0" inputmode="decimal">
+                <p class="field-error" role="alert"></p>
+              </div>
+            </div>
+            <p id="settingsPreview" class="summary"></p>
+            <div class="btn-row">
+              <button type="submit" class="btn btn-primary" data-i18n="btn_save_settings"></button>
+              <button type="button" class="btn btn-ghost" data-action="restore-settings" data-i18n="btn_restore"></button>
+            </div>
+          </form>
+          <p class="warning-box" role="note">⚠️ <span data-i18n="set_warn"></span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CONSTRUCTION ESTIMATOR ================= -->
+    <section id="construction" class="section" data-nav="construction">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow" data-i18n="build_eyebrow"></span>
+          <h2 data-i18n="build_title"></h2>
+          <p data-i18n="build_sub"></p>
+        </div>
+
+        <div class="card reveal">
+          <form id="buildForm" novalidate>
+            <div class="form-grid three">
+              <div class="field">
+                <label for="bLen" data-i18n="b_len"></label>
+                <input id="bLen" class="num-input" type="number" step="any" min="0" inputmode="decimal" value="12">
+                <p class="field-error" role="alert"></p>
+              </div>
+              <div class="field">
+                <label for="bWid" data-i18n="b_wid"></label>
+                <input id="bWid" class="num-input" type="number" step="any" min="0" inputmode="decimal" value="10">
+                <p class="field-error" role="alert"></p>
+              </div>
+              <div class="field">
+                <label for="bHei" data-i18n="b_hei"></label>
+                <input id="bHei" class="num-input" type="number" step="any" min="0" inputmode="decimal" value="10">
+                <p class="field-error" role="alert"></p>
+              </div>
+              <div class="field">
+                <label for="bThick" data-i18n="b_thick"></label>
+                <select id="bThick">
+                  <option value="4.5" data-i18n="opt_45"></option>
+                  <option value="9" data-i18n="opt_9" selected></option>
+                </select>
+                <p class="field-error" role="alert"></p>
+              </div>
+              <div class="field">
+                <label for="brL" data-i18n="b_brl"></label>
+                <input id="brL" class="num-input" type="number" step="any" min="0" inputmode="decimal" value="9">
+                <p class="field-error" role="alert"></p>
+              </div>
+              <div class="field">
+                <label for="brW" data-i18n="b_brw"></label>
+                <input id="brW" class="num-input" type="number" step="any" min="0" inputmode="decimal" value="4.5">
+                <p class="field-error" role="alert"></p>
+              </div>
+              <div class="field">
+                <label for="brH" data-i18n="b_brh"></label>
+                <input id="brH" class="num-input" type="number" step="any" min="0" inputmode="decimal" value="3">
+                <p class="field-error" role="alert"></p>
+              </div>
+              <div class="field">
+                <label for="bJoint" data-i18n="b_joint"></label>
+                <input id="bJoint" class="num-input" type="number" step="any" min="0" inputmode="decimal" value="0.375" data-allow-zero="true" data-max="3">
+                <p class="field-error" role="alert"></p>
+              </div>
+              <div class="field">
+                <label for="bRatio" data-i18n="b_ratio"></label>
+                <select id="bRatio">
+                  <option value="3">1 : 3</option>
+                  <option value="4">1 : 4</option>
+                  <option value="5" selected>1 : 5</option>
+                  <option value="6">1 : 6</option>
+                </select>
+                <p class="field-error" role="alert"></p>
+              </div>
+              <div class="field">
+                <label for="bBag" data-i18n="b_bag"></label>
+                <input id="bBag" class="num-input" type="number" step="any" min="0" inputmode="decimal" value="50">
+                <p class="field-error" role="alert"></p>
+              </div>
+              <div class="field">
+                <label for="bOpen" data-i18n="b_open"></label>
+                <input id="bOpen" class="num-input" type="number" step="any" min="0" inputmode="decimal" value="0" data-allow-zero="true">
+                <p class="field-error" role="alert"></p>
+              </div>
+              <div class="field">
+                <label for="bWaste" data-i18n="b_waste"></label>
+                <input id="bWaste" class="num-input" type="number" step="any" min="0" inputmode="decimal" value="5" data-allow-zero="true" data-max="100">
+                <p class="field-error" role="alert"></p>
+              </div>
+            </div>
+            <div class="btn-row">
+              <button type="submit" class="btn btn-primary btn-lg" data-i18n="btn_estimate"></button>
+              <button type="button" class="btn btn-ghost btn-lg" data-action="reset-build" data-i18n="btn_reset"></button>
+            </div>
+          </form>
+
+          <div id="buildResult" class="result-area" hidden>
+            <h3 data-i18n="br_title"></h3>
+            <div id="buildCards" class="result-grid"></div>
+            <div class="assumptions">
+              <h4 data-i18n="assume_title"></h4>
+              <ul>
+                <li data-i18n="assume_1"></li>
+                <li data-i18n="assume_2"></li>
+                <li data-i18n="assume_3"></li>
+                <li data-i18n="assume_4"></li>
+                <li data-i18n="assume_5"></li>
+                <li data-i18n="assume_6"></li>
+                <li data-i18n="assume_7"></li>
+              </ul>
+            </div>
+          </div>
+          <p class="warning-box" role="note">⚠️ <span data-i18n="build_disclaimer"></span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= EDUCATION ================= -->
+    <section id="learn" class="section section-alt" data-nav="learn">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow" data-i18n="edu_eyebrow"></span>
+          <h2 data-i18n="edu_title"></h2>
+          <p data-i18n="edu_sub"></p>
+        </div>
+
+        <div class="how-card reveal">
+          <h3 data-i18n="how_title"></h3>
+          <p class="formula" data-i18n="how_formula"></p>
+          <ol class="steps">
+            <li data-i18n="how_s1"></li>
+            <li data-i18n="how_s2"></li>
+            <li data-i18n="how_s3"></li>
+          </ol>
+          <p class="example-box" data-i18n="how_ex"></p>
+          <p class="muted" data-i18n="how_irregular"></p>
+        </div>
+
+        <div id="eduGrid" class="edu-grid reveal"></div>
+
+        <div class="card std-card reveal">
+          <h3 data-i18n="std_title"></h3>
+          <ul class="std-list">
+            <li data-i18n="std_1"></li>
+            <li data-i18n="std_2"></li>
+            <li data-i18n="std_3"></li>
+            <li data-i18n="std_4"></li>
+            <li data-i18n="std_5"></li>
+            <li data-i18n="std_6"></li>
+            <li data-i18n="std_7"></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER / CONTACT ================= -->
+  <footer id="contact" class="footer" data-nav="contact">
+    <div class="container footer-grid">
+      <div>
+        <div class="logo footer-logo">
+          <span class="logo-mark" aria-hidden="true">🌾</span>
+          <span class="logo-text">BHUMI <b>METER</b></span>
+        </div>
+        <p class="footer-desc" data-i18n="foot_desc"></p>
+        <p class="footer-privacy" data-i18n="privacy_note"></p>
+      </div>
+
+      <div>
+        <h3 data-i18n="foot_biz"></h3>
+        <p class="biz-name">ROHAN ONLINE SERVICE CENTRE</p>
+        <address>
+          Mazampur, Morol Para, Beside Road,<br>
+          Haroa P.S., P.O. Khalisadi,<br>
+          North 24 Parganas, West Bengal, India.
+        </address>
+      </div>
+
+      <div>
+        <h3 data-i18n="foot_contact"></h3>
+        <p>✉️ <a class="mail-link" href="mailto:mollaakriul158@gmail.com">mollaakriul158@gmail.com</a></p>
+        <div class="footer-links">
+          <a class="btn btn-light" href="mailto:mollaakriul158@gmail.com" data-i18n="btn_email"></a>
+          <a class="btn btn-outline-light" target="_blank" rel="noopener noreferrer"
+             href="https://www.google.com/search?q=Rohan+Online+Service+Centre" data-i18n="link_google"></a>
+          <a class="btn btn-outline-light" target="_blank" rel="noopener noreferrer"
+             href="https://www.google.com/maps/dir/?api=1&destination=Mazampur%2C%20Morol%20Para%2C%20Beside%20Road%2C%20Haroa%20P.S.%2C%20P.O.%20Khalisadi%2C%20North%2024%20Parganas%2C%20West%20Bengal%2C%20India"
+             data-i18n="link_map"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+        <span>© 2026 BHUMI METER. All Rights Reserved.</span>
+        <span><span data-i18n="foot_dev"></span> <strong>MD ROHAN AKTAR MOLLA</strong></span>
+      </div>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
